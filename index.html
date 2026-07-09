@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All Students Results — 2026 BECE — Taqwa High School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#081527; --navy-900:#0b1e36; --navy-800:#12304f; --navy-700:#1a4066;
+  --gold-600:#a9821c; --gold-500:#c9a227; --gold-400:#dab949; --gold-300:#e8c766;
+  --parchment:#f6f1e3; --parchment-dim:#eee6d1; --ink:#1b2431; --ink-soft:#4a5568;
+  --green:#2f6f52; --green-dim:#e4f0e9; --slate:#3d5a80; --amber:#b9752b;
+  --red:#a23b2e; --red-dim:#f7e6e3; --card:#ffffff;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--parchment); color:var(--ink); font-family:'Lora',serif; line-height:1.55;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+header.hero{
+  position:relative; background:radial-gradient(ellipse at 20% -10%, #163a5f 0%, var(--navy-900) 55%, var(--navy-950) 100%);
+  color:var(--parchment); padding:60px 8vw 46px; overflow:hidden; isolation:isolate;
+}
+header.hero::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(201,162,39,0.055) 0 2px, transparent 2px 46px),
+    repeating-linear-gradient(-45deg, rgba(201,162,39,0.055) 0 2px, transparent 2px 46px);
+  z-index:-1;
+}
+header.hero::after{
+  content:""; position:absolute; right:-140px; top:-140px; width:420px; height:420px; border-radius:50%;
+  background:radial-gradient(circle, rgba(201,162,39,0.16), transparent 70%); z-index:-1;
+}
+.eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:var(--gold-300); display:flex; align-items:center; gap:10px;}
+.eyebrow::before{content:"◆"; color:var(--gold-500); font-size:10px;}
+h1.title{font-size:clamp(30px,4.6vw,50px); margin:14px 0 6px; font-weight:800; letter-spacing:-.01em;}
+h1.title .accent{color:var(--gold-400); font-style:italic; font-weight:600;}
+.subtitle{font-size:16px; color:#c9d3e0; max-width:64ch; margin:0 0 26px;}
+.hero-meta{display:flex; flex-wrap:wrap; gap:24px 40px; margin-top:26px; padding-top:22px; border-top:1px solid rgba(232,199,102,0.25);}
+.hero-meta .item .k{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:#8fa3bc;}
+.hero-meta .item .v{font-family:'Playfair Display',serif; font-size:18px; font-weight:600; color:var(--parchment); margin-top:2px;}
+
+main{max-width:1080px; margin:0 auto; padding:0 8vw;}
+section{padding:48px 0;}
+h2.section-title{font-size:clamp(22px,3vw,28px); font-weight:700; margin:0 0 6px; color:var(--navy-900);}
+p.section-sub{color:var(--ink-soft); margin:0 0 26px; max-width:70ch; font-size:15px;}
+.tag{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-600); background:rgba(201,162,39,0.12); padding:4px 10px; border-radius:3px; margin-bottom:10px;}
+
+.podium{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; align-items:end; margin-bottom:10px;}
+.podium-card{background:linear-gradient(160deg, var(--navy-900), var(--navy-800)); border-radius:12px; padding:24px 16px 20px; text-align:center; color:var(--parchment); border:1px solid var(--gold-600);}
+.podium-card.first{padding-top:32px; box-shadow:0 14px 34px -12px rgba(201,162,39,0.45);}
+.rank-badge-big{width:38px; height:38px; border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:800; font-size:17px; background:var(--gold-500); color:var(--navy-950);}
+.podium-card.first .rank-badge-big{width:46px; height:46px; font-size:20px; background:linear-gradient(135deg,var(--gold-300),var(--gold-600));}
+.podium-card .pname{font-family:'Playfair Display',serif; font-weight:700; font-size:14.5px; margin-bottom:4px; min-height:38px;}
+.podium-card .pavg{font-family:'IBM Plex Mono',monospace; font-size:21px; color:var(--gold-300); font-weight:600;}
+.podium-card .pmeta{font-size:10.5px; color:#9fb0c6; margin-top:6px; font-family:'IBM Plex Mono',monospace;}
+.podium-card .pview{display:inline-block; margin-top:12px; font-size:11.5px; color:var(--gold-300); text-decoration:none; font-family:'IBM Plex Mono',monospace; border-bottom:1px solid var(--gold-600); padding-bottom:2px;}
+.podium-card .pview:hover{color:var(--parchment);}
+
+table.result-table{width:100%; border-collapse:collapse; background:var(--card); border-radius:10px; overflow:hidden; border:1px solid #e6ddc4;}
+table.result-table th{background:var(--navy-900); color:var(--parchment); text-align:left; padding:12px 16px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; font-weight:500;}
+table.result-table td{padding:12px 16px; border-bottom:1px solid #f0e9d5; font-size:14.5px; vertical-align:middle;}
+table.result-table tr:last-child td{border-bottom:none;}
+table.result-table tr:hover td{background:#fbf8ef;}
+.student-link{color:var(--navy-900); text-decoration:none; font-weight:600; font-family:'Playfair Display',serif; font-size:15px;}
+.student-link:hover{color:var(--gold-600); text-decoration:underline;}
+.sex-pill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; padding:2px 7px; border-radius:20px; font-weight:600; margin-left:8px; vertical-align:middle;}
+.sex-pill.F{background:#f3e6ee; color:#9c3f74;}
+.sex-pill.M{background:#e3edf7; color:#28588c;}
+.rank-badge{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--parchment-dim); color:var(--navy-900); font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px;}
+.rank-badge.gold{background:var(--gold-500); color:var(--navy-950);}
+.rank-badge.silver{background:#c7d0da; color:var(--navy-950);}
+.rank-badge.bronze{background:#d8a874; color:var(--navy-950);}
+.gpa-cell{font-weight:700; color:var(--navy-900);}
+.flags{display:flex; gap:5px; flex-wrap:wrap;}
+.flag{font-size:9.5px; font-family:'IBM Plex Mono',monospace; padding:2px 7px; border-radius:20px; text-transform:uppercase; letter-spacing:.03em;}
+.flag.gold{background:#f7edcf; color:var(--gold-600);}
+.flag.watch{background:var(--red-dim); color:var(--red);}
+.flag.neutral{background:var(--parchment-dim); color:var(--ink-soft);}
+tr.absent-row td{color:#9aa3af; font-style:italic;}
+
+.stat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:6px;}
+.stat-card{background:var(--card); border:1px solid #e6ddc4; border-radius:10px; padding:18px 18px; position:relative; overflow:hidden;}
+.stat-card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold-500);}
+.stat-card .num{font-family:'Playfair Display',serif; font-size:28px; font-weight:800; color:var(--navy-900); line-height:1;}
+.stat-card .lbl{margin-top:6px; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; font-family:'IBM Plex Mono',monospace;}
+
+.divider{display:flex; align-items:center; gap:14px; margin:0 0 10px 0;}
+.divider .line{flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold-500), transparent);}
+
+footer{background:var(--navy-950); color:#8fa3bc; padding:34px 8vw; margin-top:20px; font-size:12.5px;}
+footer .wrap{max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:center;}
+footer .brand{color:var(--gold-300); font-family:'Playfair Display',serif; font-size:15px;}
+
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;}
+.reveal.in{opacity:1; transform:none;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Taqwa High School &nbsp;·&nbsp; School No. 0201437 &nbsp;·&nbsp; Off Iju Road, Agege, Lagos</div>
+  <h1 class="title">All Students <span class="accent">Results</span> &amp; Rankings</h1>
+  <p class="subtitle">2026 Basic Education Certificate Examination — every candidate's GPA, ranking, and a direct link through to their full individual report.</p>
+  <div class="hero-meta">
+    <div class="item"><div class="k">Registered</div><div class="v">22</div></div>
+    <div class="item"><div class="k">Sat / Absent</div><div class="v">20 / 2</div></div>
+    <div class="item"><div class="k">Cohort GPA</div><div class="v">3.11 / 5.0</div></div>
+    <div class="item"><div class="k">Top GPA</div><div class="v">4.17</div></div>
+  </div>
+</header>
+
+<main>
+
+<section class="reveal">
+  <span class="tag">Cohort at a Glance</span>
+  <h2 class="section-title">Snapshot</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">20</div><div class="lbl">Candidates Ranked</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="lbl">Absent</div></div>
+    <div class="stat-card"><div class="num">3.11</div><div class="lbl">Average GPA</div></div>
+    <div class="stat-card"><div class="num">13</div><div class="lbl">Total Distinctions</div></div>
+    <div class="stat-card"><div class="num">6</div><div class="lbl">Total Fails</div></div>
+  </div>
+</section>
+
+<div class="divider"><div class="line"></div></div>
+
+<section class="reveal">
+  <span class="tag">Top of Class</span>
+  <h2 class="section-title">Leading candidates</h2>
+  <p class="section-sub">Click any card — or any name in the table below — to open that student's full individual report.</p>
+  <div class="podium">
+    
+    <div class="podium-card ">
+      <div class="rank-badge-big">2</div>
+      <div class="pname">Gandonu Khalid Oluwadarasimi</div>
+      <div class="pavg">3.92</div>
+      <div class="pmeta">3 Distinctions · 12 subjects</div>
+      <a href="students/gandonu-khalid-oluwadarasimi.html" class="pview">View Report &rarr;</a>
+    </div>
+    <div class="podium-card first">
+      <div class="rank-badge-big">1</div>
+      <div class="pname">Akingbolu Aishah Anjolaoluwa</div>
+      <div class="pavg">4.17</div>
+      <div class="pmeta">4 Distinctions · 12 subjects</div>
+      <a href="students/akingbolu-aishah-anjolaoluwa.html" class="pview">View Report &rarr;</a>
+    </div>
+    <div class="podium-card ">
+      <div class="rank-badge-big">3</div>
+      <div class="pname">Bello Falisha Adebunmi</div>
+      <div class="pavg">3.92</div>
+      <div class="pmeta">2 Distinctions · 12 subjects</div>
+      <a href="students/bello-falisha-adebunmi.html" class="pview">View Report &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <span class="tag">Full Ranking</span>
+  <h2 class="section-title">All candidates, ranked by GPA</h2>
+  <p class="section-sub">GPA is the average grade point across all subjects sat (Distinction=5 · Very Good=4 · Credit=3 · Pass=2 · Fail=1). Where GPAs are equal, ties are broken by number of distinctions, then fewer fails, then name.</p>
+  <table class="result-table">
+    <thead><tr><th>Rank</th><th>Candidate</th><th>Reg No.</th><th>Subjects</th><th>GPA</th><th>Flags</th></tr></thead>
+    <tbody>
+      
+    <tr>
+      <td><span class="rank-badge gold">1</span></td>
+      <td><a class="student-link" href="students/akingbolu-aishah-anjolaoluwa.html">Akingbolu Aishah Anjolaoluwa</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056944GE</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">4.17</td>
+      <td><div class="flags"><span class="flag gold">4 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge silver">2</span></td>
+      <td><a class="student-link" href="students/gandonu-khalid-oluwadarasimi.html">Gandonu Khalid Oluwadarasimi</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056959BJ</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.92</td>
+      <td><div class="flags"><span class="flag gold">3 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge bronze">3</span></td>
+      <td><a class="student-link" href="students/bello-falisha-adebunmi.html">Bello Falisha Adebunmi</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056946FI</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.92</td>
+      <td><div class="flags"><span class="flag gold">2 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">4</span></td>
+      <td><a class="student-link" href="students/salisu-aisha-fathiya.html">Salisu Aisha Fathiya</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056993BE</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.83</td>
+      <td><div class="flags"><span class="flag gold">1 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">5</span></td>
+      <td><a class="student-link" href="students/okikiola-muhd-ghalib-folami.html">Okikiola Muhd'Ghalib Folami</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056974HB</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.75</td>
+      <td><div class="flags"><span class="flag gold">1 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">6</span></td>
+      <td><a class="student-link" href="students/iyiola-suad-iwalewa.html">Iyiola Suad Iwalewa</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056963AH</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.58</td>
+      <td><div class="flags"><span class="flag gold">2 A</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">7</span></td>
+      <td><a class="student-link" href="students/usman-naima-kawu.html">Usman Naima Kawu</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056995AI</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.33</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">8</span></td>
+      <td><a class="student-link" href="students/musa-isyaku-khadijah.html">Musa-Isyaku Khadijah</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056971IA</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.17</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">9</span></td>
+      <td><a class="student-link" href="students/adesanya-kamilaah-adetoke.html">Adesanya Kamilaah Adetoke</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056938IC</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.08</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">10</span></td>
+      <td><a class="student-link" href="students/fofana-tidiane.html">Fofana Tidiane</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056957CF</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.08</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">11</span></td>
+      <td><a class="student-link" href="students/sheriff-abdulwahab-taofeek.html">Sheriff Abdulwahab Taofeek</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056994BB</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">3.00</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">12</span></td>
+      <td><a class="student-link" href="students/oyewole-abdulrahman-adeyinka.html">Oyewole Abdulrahman Adeyinka</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056992BH</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.92</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">13</span></td>
+      <td><a class="student-link" href="students/ladejo-adegbola-oluwapelumi.html">Ladejo Adegbola Oluwapelumi</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056967JC</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.92</td>
+      <td><div class="flags"><span class="flag watch">1 F</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">14</span></td>
+      <td><a class="student-link" href="students/jimoh-hameedah-opeyemi.html">Jimoh Hameedah Opeyemi</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056965AB</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.75</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">15</span></td>
+      <td><a class="student-link" href="students/moruf-abdulsamad-olamilekan.html">Moruf Abdulsamad Olamilekan</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056969IG</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.67</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">16</span></td>
+      <td><a class="student-link" href="students/yusuf-abdulrahman-azra-h-ayomikun.html">Yusuf-Abdulrahman Azra'H Ayomikun</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056997AC</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.58</td>
+      <td><div class="flags"><span class="flag neutral">—</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">17</span></td>
+      <td><a class="student-link" href="students/adiat-abdullah-oluwafemi.html">Adiat Abdullah Oluwafemi</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056940HG</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.58</td>
+      <td><div class="flags"><span class="flag watch">1 F</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">18</span></td>
+      <td><a class="student-link" href="students/yusuf-el-amin-alogi.html">Yusuf El-Amin Alogi</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056996AF</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.50</td>
+      <td><div class="flags"><span class="flag watch">1 F</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">19</span></td>
+      <td><a class="student-link" href="students/ahmed-fawaz-lateef.html">Ahmed Fawaz Lateef</a><span class="sex-pill M">M</span></td>
+      <td class="mono">2630056942HA</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.33</td>
+      <td><div class="flags"><span class="flag watch">1 F</span></div></td>
+    </tr>
+    <tr>
+      <td><span class="rank-badge ">20</span></td>
+      <td><a class="student-link" href="students/mustapha-abdulrazaq-firdaus.html">Mustapha Abdulrazaq Firdaus</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056973HE</td>
+      <td class="mono">12</td>
+      <td class="mono gpa-cell">2.17</td>
+      <td><div class="flags"><span class="flag watch">2 F</span></div></td>
+    </tr>
+      
+    <tr class="absent-row">
+      <td>—</td>
+      <td><a class="student-link" href="students/ismail-zainab-oyinkansola.html">Ismail Zainab Oyinkansola</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056961BD</td>
+      <td class="mono">—</td>
+      <td class="mono">ABSENT</td>
+      <td><span class="flag watch">Did not sit</span></td>
+    </tr>
+    <tr class="absent-row">
+      <td>—</td>
+      <td><a class="student-link" href="students/yahaya-rukayyah-mukhtar.html">Yahaya Rukayyah Mukhtar</a><span class="sex-pill F">F</span></td>
+      <td class="mono">2630056998JG</td>
+      <td class="mono">—</td>
+      <td class="mono">ABSENT</td>
+      <td><span class="flag watch">Did not sit</span></td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><div class="brand">Taqwa High School</div><div>Grooming for Life</div></div>
+    <div>2026 BECE Result Sheet, Page 722 · Minna, Niger State · School No. 0201437</div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
